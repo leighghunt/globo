@@ -54,7 +54,7 @@ windows:
         - editor:
           - nvim .
         - server:
-          - cd api; dotnet run
+          - cd Api; dotnet run
         - frontend:
           - cd ReactWeb; npm run dev
         - git:
