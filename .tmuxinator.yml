@@ -54,9 +54,9 @@ windows:
         - editor:
           - nvim .
         - server:
-          - dotnet run
+          - cd api; dotnet run
         - frontend:
-          - npm run dev
+          - cd ReactWeb; npm run dev
         - git:
           - lazygit
   - ad-hoc:
