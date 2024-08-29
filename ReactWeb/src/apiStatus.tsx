@@ -9,7 +9,7 @@ const ApiStatus = ({ status }: Args) => {
         case "error":
             return <h2>Something went wrong</h2>;
         default:
-            return Error("Unknown API State");
+            throw Error("Unknown API State");
     }
 }
 
