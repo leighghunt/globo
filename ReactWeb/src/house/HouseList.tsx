@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
-// import { currencyFormatter } from "../config";
+import { currencyFormatter } from "../config";
 import useFetchHouses from "../hooks/HouseHooks";
 import { House } from "../types/house";
 
@@ -28,7 +28,7 @@ const HouseList = () => {
                   <tr key={h.id}>
                     <td>{h.address}</td>
                     <td>{h.country}</td>
-                    <td>{h.price}</td>
+                    <td>{currencyFormatter.format(h.price)}</td>
                   </tr>
                 ))}
             </tbody>
