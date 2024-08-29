@@ -1,4 +1,4 @@
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 // import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 // import { currencyFormatter } from "../config";
@@ -9,13 +9,14 @@ import { House } from "../types/house";
 const HouseList = () => {
     const [houses, setHouses] = useState<House[]>([]);
 
-    const fetchHouses = async () => {
-        const res = await fetch(`${config.baseApiUrl}/houses`);
-        const data = await res.json();
-        setHouses(data);
-    }
-
-    fetchHouses();
+    useEffect(() => {
+        const fetchHouses = async () => {
+            const res = await fetch(`${config.baseApiUrl}/houses`);
+            const data = await res.json();
+            setHouses(data);
+        }
+        fetchHouses();
+    }, []);
     
     return (
         <div>
