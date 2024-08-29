@@ -45,7 +45,7 @@ root: ~/dev/playground/React/globo
 # attach: false
 
 windows:
-  - editor:
+  - main:
       layout: main-horizontal
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
@@ -57,6 +57,8 @@ windows:
           - cd Api; dotnet run
         - frontend:
           - cd ReactWeb; npm run dev
+        - bash:
+          - ;
         - git:
           - lazygit
   - ad-hoc:
