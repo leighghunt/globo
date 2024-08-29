@@ -1,22 +1,11 @@
-import {useEffect, useState } from 'react';
 // import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 // import { currencyFormatter } from "../config";
-// import { useFetchHouses } from "../hooks/HouseHooks";
-import config from "../config";
+import useFetchHouses from "../hooks/HouseHooks";
 import { House } from "../types/house";
 
 const HouseList = () => {
-    const [houses, setHouses] = useState<House[]>([]);
-
-    useEffect(() => {
-        const fetchHouses = async () => {
-            const res = await fetch(`${config.baseApiUrl}/houses`);
-            const data = await res.json();
-            setHouses(data);
-        }
-        fetchHouses();
-    }, []);
+    const { data } = useFetchHouses();
     
     return (
         <div>
@@ -35,7 +24,7 @@ const HouseList = () => {
             </thead>
             <tbody>
               {
-                houses.map((h: House) => (
+                data && data.map((h: House) => (
                   <tr key={h.id}>
                     <td>{h.address}</td>
                     <td>{h.country}</td>
