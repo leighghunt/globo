@@ -8,6 +8,8 @@ builder.Services.AddDbContext<HouseDbContext>(options =>
 {
     options.UseQueryTrackingBehavior(Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking);
 });
+builder.Services.AddScoped<IHouseRepository, HouseRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,8 +26,8 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/houses", (HouseDbContext dbContext) =>
-    dbContext.Houses
+app.MapGet("/houses", (IHouseRepository repository) =>
+    repository.GetAll()
 )
 // .WithName("GetWeatherForecast")
 .WithOpenApi();
