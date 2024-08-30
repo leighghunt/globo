@@ -3,6 +3,8 @@ import HouseList from '../house/HouseList.tsx';
 import './App.css';
 import Header from './Header.tsx';
 import HouseDetail from '../house/HouseDetail.tsx';
+import HouseAdd from '../house/HouseAdd.tsx';
+import HouseEdit from '../house/HouseEdit.tsx';
 
 function App() {
 
@@ -13,6 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HouseList />} />
           <Route path="/house/:id" element={<HouseDetail />} />
+          <Route path="/house/add/" element={<HouseAdd />} />
+          <Route path="/house/edit/:id" element={<HouseEdit />} />
         </Routes> 
       </div>
     </BrowserRouter>

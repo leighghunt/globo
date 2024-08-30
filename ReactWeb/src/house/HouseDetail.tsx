@@ -1,9 +1,9 @@
 // import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ApiStatus from "../apiStatus";
 import { currencyFormatter } from "../config";
-import { useFetchHouse} from "../hooks/HouseHooks";
+import { useDeleteHouse, useFetchHouse} from "../hooks/HouseHooks";
 // import { House } from "../types/house";
 import defaultImage from "./defaultPhoto";
 
@@ -13,6 +13,7 @@ const HouseDetail = () => {
   const houseId = parseInt(id);
 
   const { data, status, isSuccess } = useFetchHouse(houseId);
+  const deleteHouseMutation = useDeleteHouse();
 
   if(!isSuccess) {
       return <ApiStatus status={status} />;
@@ -32,7 +33,7 @@ const HouseDetail = () => {
             alt="House pic"
           />
         </div>
-        {/* <div className="row mt-3">
+        <div className="row mt-3">
           <div className="col-2">
             <Link
               className="btn btn-primary w-100"
@@ -52,7 +53,7 @@ const HouseDetail = () => {
               Delete
             </button>
           </div>
-        </div> */}
+        </div>
       </div>
       <div className="col-6">
         <div className="row mt-2">
