@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MiniValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,15 +46,23 @@ app.MapGet("/house/{houseId:int}", async (IHouseRepository repository, int house
 
 app.MapPost("/houses", async (IHouseRepository repository, [FromBody]HouseDetailDto house) => {
 
+    if(!MiniValidator.TryValidate(house, out var errors))
+    {
+        return Results.ValidationProblem(errors);
+    }
     var newHouse = await repository.Add(house);
     
     return Results.Created($"/house/{newHouse.Id}", newHouse);
-}).Produces<HouseDto>(StatusCodes.Status201Created);
+}).Produces<HouseDto>(StatusCodes.Status201Created).ProducesValidationProblem();
 
 // app.MapPut("/houses/{houseId:int}", async (IHouseRepository repository, int houseId, [FromBody]HouseDetailDto house) => {
 app.MapPut("/houses", async (IHouseRepository repository, [FromBody]HouseDetailDto house) => {
     // var e = await repository.Get(house.Id);
 
+    if(!MiniValidator.TryValidate(house, out var errors))
+    {
+        return Results.ValidationProblem(errors);
+    }
     if(await repository.Get(house.Id) == null)
     {
         return Results.Problem($"House with ID {house.Id} not found", statusCode: 404);
@@ -62,7 +71,7 @@ app.MapPut("/houses", async (IHouseRepository repository, [FromBody]HouseDetailD
     var updatedHouse = await repository.Update(house);
 
     return Results.Ok(updatedHouse);
-}).Produces<HouseDto>(StatusCodes.Status200OK).ProducesProblem(404);
+}).Produces<HouseDto>(StatusCodes.Status200OK).ProducesProblem(404).ProducesValidationProblem();
 
 app.MapDelete("houses/{houseId:int}", async (IHouseRepository repository, int houseId) => {
     var e = await repository.Get(houseId);
