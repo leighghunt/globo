@@ -6,7 +6,7 @@ public static class WebApplicationHouseExtensions
     public static void MapHouseEndpoints(this WebApplication app)
     {
         app.MapGet("/houses", (IHouseRepository repository) => repository.GetAll()).Produces<List<HouseDto>>(StatusCodes.Status200OK);
-        app.MapGet("/house/{houseId:int}", async (IHouseRepository repository, int houseId) => {
+        app.MapGet("/houses/{houseId:int}", async (IHouseRepository repository, int houseId) => {
             var house = await repository.Get(houseId);
 
             if(house == null)
@@ -25,7 +25,7 @@ public static class WebApplicationHouseExtensions
             }
             var newHouse = await repository.Add(house);
             
-            return Results.Created($"/house/{newHouse.Id}", newHouse);
+            return Results.Created($"/houses/{newHouse.Id}", newHouse);
         }).Produces<HouseDto>(StatusCodes.Status201Created).ProducesValidationProblem();
 
         // app.MapPut("/houses/{houseId:int}", async (IHouseRepository repository, int houseId, [FromBody]HouseDetailDto house) => {

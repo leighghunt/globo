@@ -37,7 +37,7 @@ const HouseDetail = () => {
           <div className="col-2">
             <Link
               className="btn btn-primary w-100"
-              to={`/house/edit/${data.id}`}
+              to={`/houses/edit/${data.id}`}
             >
               Edit
             </Link>

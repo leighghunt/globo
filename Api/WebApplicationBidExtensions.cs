@@ -5,7 +5,7 @@ public static class WebApplicationBidExtensions
 {
     public static void MapBidEndpoints(this WebApplication app)
     {
-        app.MapGet("house/{houseId:int}/bids", async (IBidRepository bidRepository, IHouseRepository houseRepository, int houseId) => {
+        app.MapGet("houses/{houseId:int}/bids", async (IBidRepository bidRepository, IHouseRepository houseRepository, int houseId) => {
 
             if(await houseRepository.Get(houseId) == null)
             {
@@ -16,7 +16,7 @@ public static class WebApplicationBidExtensions
             return Results.Ok(bids);
         }).Produces<List<BidDto>>(StatusCodes.Status200OK);
 
-        app.MapPost("house/{houseId:int}/bids", async (IBidRepository bidRepository, IHouseRepository houseRepository, int houseId, [FromBody]BidDto bid) => {
+        app.MapPost("houses/{houseId:int}/bids", async (IBidRepository bidRepository, IHouseRepository houseRepository, int houseId, [FromBody]BidDto bid) => {
 
             if(bid.HouseId != houseId)
             {

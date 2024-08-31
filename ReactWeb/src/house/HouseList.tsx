@@ -33,7 +33,7 @@ const HouseList = () => {
         <tbody>
           {
           data && data.map((h: House) => (
-              <tr key={h.id} onClick={() => (nav(`/house/${h.id}`))}>
+              <tr key={h.id} onClick={() => (nav(`/houses/${h.id}`))}>
                 <td>{h.address}</td>
                 <td>{h.country}</td>
                 <td>{currencyFormatter.format(h.price)}</td>
@@ -41,7 +41,7 @@ const HouseList = () => {
             ))}
         </tbody>
       </table>
-      <Link className="btn btn-primary" to="/house/add">
+      <Link className="btn btn-primary" to="/houses/add">
         Add
       </Link>
     </div>

@@ -14,9 +14,9 @@ function App() {
         <Header subtitle="BLAH"/>
         <Routes>
           <Route path="/" element={<HouseList />} />
-          <Route path="/house/:id" element={<HouseDetail />} />
-          <Route path="/house/add/" element={<HouseAdd />} />
-          <Route path="/house/edit/:id" element={<HouseEdit />} />
+          <Route path="/houses/:id" element={<HouseDetail />} />
+          <Route path="/houses/add/" element={<HouseAdd />} />
+          <Route path="/houses/edit/:id" element={<HouseEdit />} />
         </Routes> 
       </div>
     </BrowserRouter>
