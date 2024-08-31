@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import toBase64 from "../toBase64";
+import toBase64 from "../toBase64";
 import { House } from "../types/house";
 
 type Args = {
@@ -15,17 +15,17 @@ const HouseForm = ({ house, submitted }: Args) => {
     submitted(houseState);
   };
 
-  // const onFileSelected = async (
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ): Promise<void> => {
-  //   e.preventDefault();
-  //   e.target.files &&
-  //     e.target.files[0] &&
-  //     setHouseState({
-  //       ...houseState,
-  //       photo: await toBase64(e.target.files[0]),
-  //     });
-  // };
+  const onFileSelected = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
+    e.preventDefault();
+    e.target.files &&
+      e.target.files[0] &&
+      setHouseState({
+        ...houseState,
+        photo: await toBase64(e.target.files[0]),
+      });
+  };
 
   return (
     <form className="mt-2">
@@ -76,7 +76,7 @@ const HouseForm = ({ house, submitted }: Args) => {
           }
         />
       </div>
-      {/* <div className="form-group mt-2">
+      <div className="form-group mt-2">
         <label htmlFor="image">Image</label>
         <input
           id="image"
@@ -87,7 +87,7 @@ const HouseForm = ({ house, submitted }: Args) => {
       </div>
       <div className="mt-2">
         <img src={houseState.photo}></img>
-      </div> */}
+      </div>
       <button
         className="btn btn-primary mt-2"
         disabled={!houseState.address || !houseState.country}
