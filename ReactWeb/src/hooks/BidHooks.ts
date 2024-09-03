@@ -15,12 +15,12 @@ const useFetchBids = (houseId: number) => {
     });
 }
 
-const useAddBid = (houseId: number) => {
+const useAddBid = () => {
     const nav = useNavigate();
     const queryClient = useQueryClient();
     return useMutation<AxiosResponse, AxiosError<Problem>, Bid, null>({
         mutationFn: (bid: Bid) =>
-            axios.post(`${config.baseApiUrl}/houses/${houseId}/bids`, bid),
+            axios.post(`${config.baseApiUrl}/houses/${bid.houseId}/bids`, bid),
         onSuccess: (resp, bid) => {
             queryClient.invalidateQueries({ queryKey: ['bids'] });
             nav('/');
