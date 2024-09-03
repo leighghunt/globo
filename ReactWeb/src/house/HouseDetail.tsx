@@ -6,7 +6,7 @@ import { currencyFormatter } from "../config";
 import { useDeleteHouse, useFetchHouse} from "../hooks/HouseHooks";
 // import { House } from "../types/house";
 import defaultImage from "./defaultPhoto";
-import Bids from "../bids/bids";
+import Bids from "../bids/Bids";
 
 const HouseDetail = () => {
   const { id } = useParams();
