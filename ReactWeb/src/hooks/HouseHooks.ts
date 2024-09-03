@@ -1,7 +1,7 @@
 import config from "../config";
 import { House } from "../types/house";
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from "react-router-dom";
 import Problem from "../types/problem";
 
